@@ -29,7 +29,7 @@ export default function Index() {
               <li key={index}>
                 <NextLink href="/[slug]" as={`/${post?.slug}`}>
                   <a href={`/${post?.slug}`}>
-                    {/* {post?.title} */}
+                    {post?.title}
                   </a>
                 </NextLink>
               </li>
