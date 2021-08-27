@@ -11,16 +11,16 @@ export default function Post({ post, blocks }) {
   return (
     <>
       <Head>
-        <title>{post.title} - coffeeclass.io Engineering</title>
-        <meta name="description" content={post.summary}></meta>
+        <title>{post?.title} - coffeeclass.io Engineering</title>
+        <meta name="description" content={post?.summary}></meta>
       </Head>
       <div className="wrapper">
         <div className="header-wrapper">
           <NextLink href="/">
             Home
           </NextLink>
-          <h1 style={{ fontSize: '3em', marginBottom: '8px' }}>{post.title}</h1>
-          <p>Posted on {format(parseISO(post.date), 'MMMM dd, yyyy')}</p>
+          <h1 style={{ fontSize: '3em', marginBottom: '8px' }}>{post?.title && post.title}</h1>
+          <p>Posted on {post?.data && format(parseISO(post.date), 'MMMM dd, yyyy')}</p>
         </div>
         <div className="inner-wrapper">
           <motion.div
@@ -28,7 +28,7 @@ export default function Post({ post, blocks }) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: .5 }}
           >
-            <NotionRenderer blockMap={blocks} />
+            {blocks && <NotionRenderer blockMap={blocks} />}
           </motion.div>
           <Footer />
         </div>

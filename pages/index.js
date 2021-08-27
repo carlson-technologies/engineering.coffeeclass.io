@@ -25,10 +25,11 @@ export default function Index() {
         <div className="inner-wrapper" style={{ maxWidth: '400px' }}>
           <ul>
             {data && data.json.filter(p => p.published == true).map((post, index) => (
+              console.log(post),
               <li key={index}>
-                <NextLink href="/[slug]" as={`/${post.slug}`}>
-                  <a href={`/${post.slug}`}>
-                    {post.title}
+                <NextLink href="/[slug]" as={`/${post?.slug}`}>
+                  <a href={`/${post?.slug}`}>
+                    {/* {post?.title} */}
                   </a>
                 </NextLink>
               </li>
