@@ -5,22 +5,26 @@ import NextLink from "next/link"
 import { motion } from 'framer-motion'
 import { parseISO, format } from 'date-fns'
 import Head from "next/head"
-import Footer from "../components/Footer"
 
 export default function Post({ post, blocks }) {
   return (
     <>
       <Head>
-        <title>{post?.title} - coffeeclass.io Engineering</title>
+        <title>{post?.title}</title>
         <meta name="description" content={post?.summary}></meta>
       </Head>
       <div className="wrapper">
         <div className="header-wrapper">
-          <NextLink href="/">
-            Home
-          </NextLink>
-          <h1 style={{ fontSize: '3em', marginBottom: '8px' }}>{post?.title && post.title}</h1>
-          <p>Posted on {post?.data && format(parseISO(post.date), 'MMMM dd, yyyy')}</p>
+          <div className="header-wrapper-inner">
+            <NextLink href="/">
+              <div className="flex always-row hover-pointer" style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <FiChevronLeft />
+                <p>Home</p>
+              </div>
+            </NextLink>
+            <h1 style={{ fontSize: '2em', marginBottom: '8px' }}>{post?.title && post.title}</h1>
+            <p>Posted on {post?.publishedAt && format(parseISO(post?.publishedAt), 'MMMM dd, yyyy')}</p>
+          </div>
         </div>
         <div className="inner-wrapper">
           <motion.div
@@ -29,8 +33,13 @@ export default function Post({ post, blocks }) {
             transition={{ duration: .5 }}
           >
             {blocks && <NotionRenderer blockMap={blocks} />}
+            <NextLink href="/">
+              <div className="flex always-row hover-pointer" style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <FiChevronLeft />
+                <p>Home</p>
+              </div>
+            </NextLink>
           </motion.div>
-          <Footer />
         </div>
       </div>
     </>
